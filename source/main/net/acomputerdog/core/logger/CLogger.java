@@ -47,7 +47,11 @@ public class CLogger {
      *              String -> will use string
      */
     public CLogger(Object owner) {
-        this(owner, false, false, ELogLevel.DEBUG);
+        this(owner, false, false);
+    }
+
+    public CLogger(Object owner, boolean includeDate, boolean includeTime) {
+        this(owner, includeDate, includeTime, ELogLevel.DEBUG);
     }
 
     /**
