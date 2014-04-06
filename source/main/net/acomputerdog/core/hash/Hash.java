@@ -1,4 +1,4 @@
-package net.acomputerdog.core;
+package net.acomputerdog.core.hash;
 
 import java.lang.reflect.Array;
 
