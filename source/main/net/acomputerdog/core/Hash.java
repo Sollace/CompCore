@@ -51,8 +51,8 @@ public class Hash {
             result = hash(result, obj.hashCode());
         } else {
             int length = Array.getLength(obj);
-            for (int idx = 0; idx < length; ++idx) {
-                Object item = Array.get(obj, idx);
+            for (int index = 0; index < length; ++index) {
+                Object item = Array.get(obj, index);
                 if (!(item == obj)) {
                     result = hash(result, item);
                 }
