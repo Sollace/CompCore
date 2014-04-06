@@ -71,11 +71,12 @@ public class CLogger {
         }
         this.includeDate = includeDate;
         this.includeTime = includeTime;
+        this.minimumLogLevel = minimumLevel;
     }
 
     public void log(ELogLevel level, String message) {
         if (level.isAllowed(minimumLogLevel)) {
-            log(" [" + level.getLevelName() + "] " + message);
+            log("[" + level.getLevelName() + "] " + message);
         }
     }
 
@@ -85,7 +86,7 @@ public class CLogger {
      * @param message The message to print.
      */
     private void log(String message) {
-        System.out.println(getDate() + getTime() + "[" + name + "] " + message);
+        System.out.println(getDate() + getTime() + "[" + name + "]" + message);
     }
 
     /**
@@ -187,11 +188,11 @@ public class CLogger {
 
     private void logException(Throwable... e) {
         for (Throwable t : e) {
-            logStack(t.getMessage());
+            logStack(t.toString());
             StackTraceElement[] stack = t.getStackTrace();
             for (int index = 0; index < stack.length; index++) {
                 StackTraceElement element = stack[index];
-                logStack(element.toString() + ((index < stack.length - 1) ? "\n" : ""));
+                logStack(" at " + element.toString());
             }
         }
     }
