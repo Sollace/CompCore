@@ -4,13 +4,13 @@ package net.acomputerdog.core.logger;
  * Logging levels such as DEBUG, INFO, ERROR, etc.
  */
 public enum ELogLevel {
-    DEBUG("debug", 0, true, false),
-    DETAIL("detail", 1, true, false),
-    INFO("info", 2, false, false),
-    WARNING("warning", 3, false, false),
-    ERROR("error", 4, false, true),
-    FATAL("fatal", 5, false, true),
-    STACK("stack", 6, false, true);
+    DEBUG("DEBUG", 0, true, false),
+    DETAIL("DETAIL", 1, true, false),
+    INFO("INFO", 2, false, false),
+    WARNING("WARNING", 3, false, false),
+    ERROR("ERROR", 4, false, true),
+    FATAL("FATAL", 5, false, true),
+    STACK("STACK", 6, false, true);
 
     private String levelName;
     private int priority;

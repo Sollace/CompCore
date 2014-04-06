@@ -75,7 +75,7 @@ public class CLogger {
 
     public void log(ELogLevel level, String message) {
         if (level.isAllowed(minimumLogLevel)) {
-            log(" [" + level.name() + "] " + message);
+            log(" [" + level.getLevelName() + "] " + message);
         }
     }
 
@@ -181,22 +181,19 @@ public class CLogger {
         logException(e);
     }
 
-    private void logException(Throwable... e) {
-        for (Throwable i : e) {
-            log(i.getMessage() + "\n" + formatStackTrace(i.getStackTrace()));
-        }
+    private void logStack(String message) {
+        log(ELogLevel.STACK, message);
     }
 
-    private String formatStackTrace(StackTraceElement[] stack) {
-        StringBuilder builder = new StringBuilder();
-        for (int index = 0; index < stack.length; index++) {
-            StackTraceElement element = stack[index];
-            builder.append(element.toString());
-            if (index < stack.length - 1) {
-                builder.append("\n");
+    private void logException(Throwable... e) {
+        for (Throwable t : e) {
+            logStack(t.getMessage());
+            StackTraceElement[] stack = t.getStackTrace();
+            for (int index = 0; index < stack.length; index++) {
+                StackTraceElement element = stack[index];
+                logStack(element.toString() + ((index < stack.length - 1) ? "\n" : ""));
             }
         }
-        return builder.toString();
     }
 
     public boolean doesIncludeDate() {
