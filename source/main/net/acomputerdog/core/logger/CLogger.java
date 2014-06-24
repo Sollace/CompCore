@@ -5,7 +5,7 @@ import net.acomputerdog.core.time.StandardClock;
 /**
  * Customized logger.  Tagged with a name specified by the creator of the logger.
  * Sample output:
- * [Test Mod][INFO] This is BLLogger.logInfo().
+ * [Test Mod][INFO] This is CLogger.logInfo().
  * [UNKNOWN][FATAL] The chat monitor thread has died unexpectedly!
  * [TPSMonitor][WARNING] The game tick rate has dropped below 50%!
  * [Awesome Logger of Awesomeness!] I'm Awesome!
