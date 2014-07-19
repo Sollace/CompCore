@@ -168,7 +168,7 @@ public class CLogger {
      * Prints out a message in the format [{name}][ERROR] {message}/n.
      *
      * @param message The message to print.
-     * @param e       Optional parameter. Exception that has occured
+     * @param e       Optional parameter. Exception that has occurred
      */
     public void logError(String message, Throwable... e) {
         log(ELogLevel.ERROR, message);
@@ -179,7 +179,7 @@ public class CLogger {
      * Prints out a message in the format [{name}][FATAL] {message}/n.
      *
      * @param message The message to print.
-     * @param e       Optional parameter. Exception that has occured
+     * @param e       Optional parameter. Exception that has occurred
      */
     public void logFatal(String message, Throwable... e) {
         log(ELogLevel.FATAL, message);
@@ -194,8 +194,7 @@ public class CLogger {
         for (Throwable t : e) {
             logStack(t.toString());
             StackTraceElement[] stack = t.getStackTrace();
-            for (int index = 0; index < stack.length; index++) {
-                StackTraceElement element = stack[index];
+            for (StackTraceElement element : stack) {
                 logStack(" at " + element.toString());
             }
         }
