@@ -22,7 +22,7 @@ public class ThreadUtils {
      * @param force           If true, InterruptedExceptions will be suppressed
      */
     public static void sync(long methodStartTime, long duration, boolean force) {
-        if (duration <= 0) {
+        if (duration <= 10) {
             return;
         }
         long currTime = System.currentTimeMillis(); //only calculate current time once, otherwise math can be thrown off

@@ -5,6 +5,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 public class Patterns {
+    private static final Map<String, String> patternMap = new ConcurrentHashMap<String, String>();
+
     public static final String A = quote("A");
     public static final String B = quote("B");
     public static final String C = quote("C");
@@ -87,8 +89,6 @@ public class Patterns {
     public static final String DOLLARSIGN = quote("$");
 
     public static final String SECTONSIGN = quote("\u0167");
-
-    private static final Map<String, String> patternMap = new ConcurrentHashMap<String, String>();
 
     public static String quote(String str) {
         String regex = patternMap.get(str);
