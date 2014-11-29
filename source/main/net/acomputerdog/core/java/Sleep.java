@@ -3,7 +3,7 @@ package net.acomputerdog.core.java;
 /**
  * Threading-related utilities
  */
-public class ThreadUtils {
+public class Sleep {
     /**
      * Syncs a method to a minimum duration.
      *
