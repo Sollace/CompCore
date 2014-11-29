@@ -14,14 +14,9 @@ public class CLogger {
     private static StandardClock theClock = new StandardClock();
 
     /**
-     * Object that is the owner of this BLLogger.  Can be null.
-     */
-    private Object owner;
-
-    /**
      * Name used to tag this logger's output.
      */
-    private String name;
+    private final String name;
 
     /**
      * Include dates in debug messages?
@@ -41,38 +36,25 @@ public class CLogger {
     /**
      * Creates a new CLogger.
      *
-     * @param owner The Object that created this CLogger.  Used to tag output.  Object.getClass().getSimpleName() will be used unless owner is one of:
-     *              null -> "UNKNOWN"
-     *              Mod -> Mod.getModName()
-     *              String -> will use string
+     * @param name The name of this CLogger
      */
-    public CLogger(Object owner) {
-        this(owner, false, false);
+    public CLogger(String name) {
+        this(name, false, false);
     }
 
-    public CLogger(Object owner, boolean includeDate, boolean includeTime) {
-        this(owner, includeDate, includeTime, ELogLevel.DEBUG);
+    public CLogger(String name, boolean includeDate, boolean includeTime) {
+        this(name, includeDate, includeTime, ELogLevel.DEBUG);
     }
 
     /**
-     * Crates a new BLLogger.
+     * Crates a new CLogger.
      *
-     * @param owner       The Object that created this CLogger.  Used to tag output.  Object.getClass().getSimpleName() will be used unless owner is one of:
-     *                    null -> "UNKNOWN"
-     *                    Mod -> Mod.getModName()
-     *                    String -> will use string
+     * @param name       The Name of this CLogger
      * @param includeDate Set to true to include the date in log messages.
      * @param includeTime Set to true to include the time in log messages.
      */
-    public CLogger(Object owner, boolean includeDate, boolean includeTime, ELogLevel minimumLevel) {
-        this.owner = owner;
-        if (owner == null) {
-            name = "";
-        } else if (owner instanceof String) {
-            name = (String) owner;
-        } else {
-            name = owner.getClass().getSimpleName();
-        }
+    public CLogger(String name, boolean includeDate, boolean includeTime, ELogLevel minimumLevel) {
+        this.name = (name == null ? "NULL" : name);
         this.includeDate = includeDate;
         this.includeTime = includeTime;
         this.minimumLogLevel = minimumLevel;
@@ -222,5 +204,9 @@ public class CLogger {
 
     public void setMinimumLogLevel(ELogLevel minimumLogLevel) {
         this.minimumLogLevel = minimumLogLevel;
+    }
+
+    public String getName() {
+        return name;
     }
 }
