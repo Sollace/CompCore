@@ -148,37 +148,38 @@ public class CLogger {
      *
      * @param message The message to print.
      */
-    public void logWarning(String message) {
+    public void logWarning(String message, Throwable... throwables) {
         log(ELogLevel.WARNING, message);
+        logThrowables(throwables);
     }
 
     /**
      * Prints out a message in the format [{name}][ERROR] {message}/n.
      *
      * @param message The message to print.
-     * @param e       Optional parameter. Exception that has occurred
+     * @param throwables       Optional parameter. Exception that has occurred
      */
-    public void logError(String message, Throwable... e) {
+    public void logError(String message, Throwable... throwables) {
         log(ELogLevel.ERROR, message);
-        logException(e);
+        logThrowables(throwables);
     }
 
     /**
      * Prints out a message in the format [{name}][FATAL] {message}/n.
      *
      * @param message The message to print.
-     * @param e       Optional parameter. Exception that has occurred
+     * @param throwables       Optional parameter. Exception that has occurred
      */
-    public void logFatal(String message, Throwable... e) {
+    public void logFatal(String message, Throwable... throwables) {
         log(ELogLevel.FATAL, message);
-        logException(e);
+        logThrowables(throwables);
     }
 
     private void logStack(String message) {
         log(ELogLevel.STACK, message);
     }
 
-    private void logException(Throwable... e) {
+    private void logThrowables(Throwable... e) {
         for (Throwable t : e) {
             logStack(t.toString());
             StackTraceElement[] stack = t.getStackTrace();
