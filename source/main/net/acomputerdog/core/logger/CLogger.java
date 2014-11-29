@@ -2,6 +2,9 @@ package net.acomputerdog.core.logger;
 
 import net.acomputerdog.core.time.StandardClock;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 /**
  * Customized logger.  Tagged with a name specified by the creator of the logger.
  * Sample output:
@@ -33,6 +36,8 @@ public class CLogger {
      */
     private ELogLevel minimumLogLevel;
 
+    private PrintStream loggerOutput;
+
     /**
      * Creates a new CLogger.
      *
@@ -58,6 +63,7 @@ public class CLogger {
         this.includeDate = includeDate;
         this.includeTime = includeTime;
         this.minimumLogLevel = minimumLevel;
+        this.loggerOutput = System.out;
     }
 
     public void log(ELogLevel level, String message) {
@@ -72,7 +78,7 @@ public class CLogger {
      * @param message The message to print.
      */
     private void log(String message) {
-        System.out.println(getDate() + getTime() + "[" + name + "]" + message);
+        loggerOutput.println(getDate() + getTime() + "[" + name + "]" + message);
     }
 
     /**
@@ -177,8 +183,9 @@ public class CLogger {
             logStack(t.toString());
             StackTraceElement[] stack = t.getStackTrace();
             for (StackTraceElement element : stack) {
-                logStack(" at " + element.toString());
+                logStack("\tat " + element.toString());
             }
+
         }
     }
 
@@ -208,5 +215,16 @@ public class CLogger {
 
     public String getName() {
         return name;
+    }
+
+    public OutputStream getLoggerOutput() {
+        return loggerOutput;
+    }
+
+    public void setLoggerOutput(PrintStream loggerOutput) {
+        if (loggerOutput == null) {
+            throw new IllegalArgumentException("Logger output cannot be null!");
+        }
+        this.loggerOutput = loggerOutput;
     }
 }
