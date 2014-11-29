@@ -1,4 +1,4 @@
-package net.acomputerdog.core.java;
+package net.acomputerdog.core.util;
 
 /**
  * Math utility functions
