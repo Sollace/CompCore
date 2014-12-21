@@ -1,9 +1,9 @@
 package net.acomputerdog.core.logger;
 
+import net.acomputerdog.core.java.Patterns;
 import net.acomputerdog.core.time.StandardClock;
 
-import java.io.OutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 /**
  * Customized logger.  Tagged with a name specified by the creator of the logger.
@@ -38,6 +38,8 @@ public class CLogger {
 
     private PrintStream loggerOutput;
 
+    private final PrintWriter exceptionLogger;
+
     /**
      * Creates a new CLogger.
      *
@@ -64,6 +66,7 @@ public class CLogger {
         this.includeTime = includeTime;
         this.minimumLogLevel = minimumLevel;
         this.loggerOutput = System.out;
+        this.exceptionLogger = new PrintWriter(new CLoggerWriter());
     }
 
     public void log(ELogLevel level, String message) {
@@ -179,14 +182,16 @@ public class CLogger {
         log(ELogLevel.STACK, message);
     }
 
-    private void logThrowables(Throwable... e) {
-        for (Throwable t : e) {
+    private void logThrowables(Throwable... throwables) {
+        for (Throwable t : throwables) {
+            t.printStackTrace(exceptionLogger);
+            /*
             logStack(t.toString());
             StackTraceElement[] stack = t.getStackTrace();
             for (StackTraceElement element : stack) {
                 logStack("\tat " + element.toString());
             }
-
+            */
         }
     }
 
@@ -227,5 +232,40 @@ public class CLogger {
             throw new IllegalArgumentException("Logger output cannot be null!");
         }
         this.loggerOutput = loggerOutput;
+    }
+
+    private class CLoggerWriter extends Writer {
+
+        private CLoggerWriter() {
+            super();
+        }
+
+        @Override
+        public void write(char[] cbuf, int off, int len) throws IOException {
+            StringBuilder builder = new StringBuilder();
+            for (int index = off; index < off + len; index++) {
+                char chr = cbuf[index];
+                builder.append(chr);
+            }
+            if (builder.length() > 0) {
+                String output = builder.toString();
+                String[] outputs = output.split(Patterns.quote("\n"));
+                for (String out : outputs) {
+                    if (!(out.isEmpty() || out.trim().isEmpty())) {
+                        logStack(out);
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void flush() throws IOException {
+
+        }
+
+        @Override
+        public void close() throws IOException {
+
+        }
     }
 }
