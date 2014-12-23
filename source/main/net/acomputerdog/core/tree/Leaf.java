@@ -27,6 +27,15 @@ public class Leaf<T> {
     }
 
     /**
+     * Creates a new leaf with no item
+     *
+     * @param branch The branch that this leaf is attached to
+     */
+    public Leaf(Branch branch) {
+        this(branch, null);
+    }
+
+    /**
      * Gets the item held by this leaf
      * @return return the item
      */
