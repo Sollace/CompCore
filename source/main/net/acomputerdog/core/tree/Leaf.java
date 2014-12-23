@@ -22,6 +22,9 @@ public class Leaf<T> {
      * @param item The item this leaf holds
      */
     public Leaf(Branch<T> branch, T item) {
+        if (branch == null) {
+            throw new IllegalArgumentException("Cannot attach to a nul branch!");
+        }
         this.branch = branch;
         this.item = item;
     }

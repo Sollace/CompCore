@@ -36,6 +36,12 @@ public class Branch<T> {
      * @param parent The parent branch
      */
     public Branch(Tree<T> tree, Branch<T> parent) {
+        if (tree == null) {
+            throw new IllegalArgumentException("Cannot attach to a null tree!");
+        }
+        if (parent == null) {
+            throw new IllegalArgumentException("Cannot attach to a null branch!");
+        }
         this.parent = parent;
         this.tree = tree;
         branches = new HashSet<Branch<T>>();
