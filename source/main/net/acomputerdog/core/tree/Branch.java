@@ -95,6 +95,12 @@ public class Branch<T> {
      * @param branch the branch to add
      */
     public void addBranch(Branch<T> branch) {
+        if (branch == null) {
+            throw new IllegalArgumentException("Cannot attach a null branch!");
+        }
+        if (branch == this) {
+            throw new IllegalArgumentException("Cannot attach a branch to itself!");
+        }
         branches.add(branch);
     }
 
