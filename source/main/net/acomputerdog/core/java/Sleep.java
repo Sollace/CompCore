@@ -1,7 +1,7 @@
 package net.acomputerdog.core.java;
 
 /**
- * Threading-related utilities
+ * Thread sleep related utilities
  */
 public class Sleep {
     /**
