@@ -14,14 +14,14 @@ public class Leaf<T> {
     /**
      * The branch that this leaf is on
      */
-    private final Branch branch;
+    private final Branch<T> branch;
 
     /**
      * Creates a new Leaf
      * @param branch The branch that this leaf is attached to
      * @param item The item this leaf holds
      */
-    public Leaf(Branch branch, T item) {
+    public Leaf(Branch<T> branch, T item) {
         this.branch = branch;
         this.item = item;
     }
@@ -31,7 +31,7 @@ public class Leaf<T> {
      *
      * @param branch The branch that this leaf is attached to
      */
-    public Leaf(Branch branch) {
+    public Leaf(Branch<T> branch) {
         this(branch, null);
     }
 
@@ -55,7 +55,7 @@ public class Leaf<T> {
      * Gets the branch this leaf is on
      * @return return the branch of this leaf
      */
-    public Branch getBranch() {
+    public Branch<T> getBranch() {
         return branch;
     }
 }
