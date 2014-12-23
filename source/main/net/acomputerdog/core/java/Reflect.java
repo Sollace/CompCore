@@ -11,7 +11,7 @@ public class Reflect {
     /**
      * Map of FieldInstances to Fields
      */
-    private static final Map<FieldID, Field> fieldMap = new HashMap<FieldID, Field>();
+    private static final Map<FieldInstance, Field> fieldMap = new HashMap<FieldInstance, Field>();
 
     /**
      * Gets the value of a field, even if it is private
@@ -23,7 +23,7 @@ public class Reflect {
      * @return Return a T representing the value of the field
      */
     public static <T> T getFieldValue(Class cls, Object instance, String name) {
-        FieldID fid = new FieldID(cls, name);
+        FieldInstance fid = new FieldInstance(cls, name);
         Field field = fieldMap.get(fid);
         if (field == null) {
             try {
@@ -46,7 +46,7 @@ public class Reflect {
     /**
      * Class used to hold a class and field name.  Used for caching hashmap.
      */
-    private static class FieldID {
+    private static class FieldInstance {
         /**
          * The class of the field
          */
@@ -56,7 +56,7 @@ public class Reflect {
          */
         private final String name;
 
-        private FieldID(Class cls, String name) {
+        private FieldInstance(Class cls, String name) {
             if (cls == null || name == null) {
                 throw new IllegalArgumentException("Class and Name cannot be null!");
             }
@@ -67,13 +67,13 @@ public class Reflect {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof FieldID)) return false;
+            if (!(o instanceof FieldInstance)) return false;
 
-            FieldID fieldID = (FieldID) o;
+            FieldInstance fieldInstance = (FieldInstance) o;
 
-            if (!cls.equals(fieldID.cls)) return false;
+            if (!cls.equals(fieldInstance.cls)) return false;
 
-            return name.equals(fieldID.name);
+            return name.equals(fieldInstance.name);
 
         }
 
