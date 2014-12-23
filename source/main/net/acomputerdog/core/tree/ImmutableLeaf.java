@@ -11,7 +11,7 @@ public final class ImmutableLeaf<T> extends Leaf<T> {
      * @param branch The branch to attach to
      * @param item The item this ImmutableLeaf holds
      */
-    public ImmutableLeaf(Branch branch, T item) {
+    public ImmutableLeaf(Branch<T> branch, T item) {
         super(branch, item);
     }
 
