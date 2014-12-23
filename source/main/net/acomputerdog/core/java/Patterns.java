@@ -93,8 +93,14 @@ public class Patterns {
     public static final String EXCLAMATION = quote("!");
     public static final String NUMBERSIGN = quote("#");
     public static final String DOLLARSIGN = quote("$");
+    public static final String GREATER_THAN = quote(">");
+    public static final String LESS_THAN = quote("<");
+    public static final String OPEN_CURLY_BRACKETS = quote("{");
+    public static final String CLOSE_CURLY_BRACKETS = quote("}");
 
     public static final String SECTONSIGN = quote("\u0167");
+
+    public static final String NEWLINE = quote("\n");
 
     /**
      * Gets the regex that will quote the specified string, creating it if necessary.
