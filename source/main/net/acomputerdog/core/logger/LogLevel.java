@@ -3,7 +3,7 @@ package net.acomputerdog.core.logger;
 /**
  * Logging levels such as DEBUG, INFO, ERROR, etc.
  */
-public enum ELogLevel {
+public enum LogLevel {
     DEBUG("DEBUG", 0, true, false),
     DETAIL("DETAIL", 1, true, false),
     INFO("INFO", 2, false, false),
@@ -17,7 +17,7 @@ public enum ELogLevel {
     private boolean isDebug;
     private boolean isError;
 
-    private ELogLevel(String levelName, int priority, boolean isDebug, boolean isError) {
+    private LogLevel(String levelName, int priority, boolean isDebug, boolean isError) {
         this.levelName = levelName;
         this.priority = priority;
         this.isDebug = isDebug;
@@ -66,7 +66,7 @@ public enum ELogLevel {
      * @param priority The priority to compare to.
      * @return Returns true if this ELogLevel is allowed with the specified priority.
      */
-    public boolean isAllowed(int priority) {
+    public boolean isAllowedBy(int priority) {
         return this.priority >= priority;
     }
 
@@ -76,7 +76,7 @@ public enum ELogLevel {
      * @param priority The priority to compare to.
      * @return Returns true if this ELogLevel is allowed with the specified priority.
      */
-    public boolean isAllowed(ELogLevel priority) {
+    public boolean isAllowedBy(LogLevel priority) {
         return this.priority >= priority.getPriority();
     }
 
@@ -86,11 +86,11 @@ public enum ELogLevel {
      * @param name The name of the ELogLevel to get.
      * @return Return the ELogLevel identified by the given name, or null if none exists.
      */
-    public static ELogLevel getByName(String name) {
+    public static LogLevel getByName(String name) {
         if (name == null) {
             throw new IllegalArgumentException("name cannot be null!");
         } else {
-            for (ELogLevel level : values()) {
+            for (LogLevel level : values()) {
                 if (name.equals(level.getLevelName())) {
                     return level;
                 }

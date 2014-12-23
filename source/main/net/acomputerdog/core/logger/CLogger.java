@@ -46,7 +46,7 @@ public class CLogger {
     /**
      * The minimum logging level.
      */
-    private ELogLevel minimumLogLevel;
+    private LogLevel minimumLogLevel;
 
     /**
      * The PrintStream that this CLogger outputs to.
@@ -69,7 +69,7 @@ public class CLogger {
      * @param includeTime If true, time will be printed with log output
      */
     public CLogger(String name, boolean includeDate, boolean includeTime) {
-        this(name, includeDate, includeTime, ELogLevel.DEBUG);
+        this(name, includeDate, includeTime, LogLevel.DEBUG);
     }
 
     /**
@@ -79,7 +79,7 @@ public class CLogger {
      * @param includeDate Set to true to include the date in log messages.
      * @param includeTime Set to true to include the time in log messages.
      */
-    public CLogger(String name, boolean includeDate, boolean includeTime, ELogLevel minimumLevel) {
+    public CLogger(String name, boolean includeDate, boolean includeTime, LogLevel minimumLevel) {
         this.name = (name == null ? "NULL" : name);
         this.includeDate = includeDate;
         this.includeTime = includeTime;
@@ -140,8 +140,8 @@ public class CLogger {
      * @param message The message to log.
      * @return Return true if the logging as allowed, false otherwise
      */
-    public boolean log(ELogLevel level, String message) {
-        if (level.isAllowed(minimumLogLevel)) {
+    public boolean log(LogLevel level, String message) {
+        if (level.isAllowedBy(minimumLogLevel)) {
             log("[" + level.getLevelName() + "] " + message);
             return true;
         }
@@ -155,7 +155,7 @@ public class CLogger {
      * @return Return true if the logging as allowed, false otherwise
      */
     public boolean logDebug(String message) {
-        return log(ELogLevel.DEBUG, message);
+        return log(LogLevel.DEBUG, message);
     }
 
     /**
@@ -165,7 +165,7 @@ public class CLogger {
      * @return Return true if the logging as allowed, false otherwise
      */
     public boolean logDetail(String message) {
-        return log(ELogLevel.DETAIL, message);
+        return log(LogLevel.DETAIL, message);
     }
 
     /**
@@ -175,7 +175,7 @@ public class CLogger {
      * @return Return true if the logging as allowed, false otherwise
      */
     public boolean logInfo(String message) {
-        return log(ELogLevel.INFO, message);
+        return log(LogLevel.INFO, message);
     }
 
     /**
@@ -185,7 +185,7 @@ public class CLogger {
      * @return Return true if the logging as allowed, false otherwise
      */
     public boolean logWarning(String message, Throwable... throwables) {
-        if (log(ELogLevel.WARNING, message)) {
+        if (log(LogLevel.WARNING, message)) {
             logThrowables(throwables);
             return true;
         }
@@ -200,7 +200,7 @@ public class CLogger {
      * @return Return true if the logging as allowed, false otherwise
      */
     public boolean logError(String message, Throwable... throwables) {
-        if (log(ELogLevel.ERROR, message)) {
+        if (log(LogLevel.ERROR, message)) {
             logThrowables(throwables);
             return true;
         }
@@ -215,7 +215,7 @@ public class CLogger {
      * @return Return true if the logging as allowed, false otherwise
      */
     public boolean logFatal(String message, Throwable... throwables) {
-        if (log(ELogLevel.FATAL, message)) {
+        if (log(LogLevel.FATAL, message)) {
             logThrowables(throwables);
             return true;
         }
@@ -227,7 +227,7 @@ public class CLogger {
      * @param message The message to print.
      */
     private void logStack(String message) {
-        log(ELogLevel.STACK, message);
+        log(LogLevel.STACK, message);
     }
 
     /**
@@ -276,7 +276,7 @@ public class CLogger {
      * Gets the minimum logging level of this CLogger.  LogLevels below this amount will be hidden.
      * @return Return the LogLevel of this CLogger.
      */
-    public ELogLevel getMinimumLogLevel() {
+    public LogLevel getMinimumLogLevel() {
         return minimumLogLevel;
     }
 
@@ -284,7 +284,7 @@ public class CLogger {
      * Sets the minimum logging level of this CLogger.  LogLevels below this amount will be hidden.
      * @param minimumLogLevel The minimum LogLevel to set
      */
-    public void setMinimumLogLevel(ELogLevel minimumLogLevel) {
+    public void setMinimumLogLevel(LogLevel minimumLogLevel) {
         this.minimumLogLevel = minimumLogLevel;
     }
 
