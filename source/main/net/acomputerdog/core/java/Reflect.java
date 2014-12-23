@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated //this is left only as legacy code support, and should not be relied upon
 /**
  * Reflection utilities
  */
