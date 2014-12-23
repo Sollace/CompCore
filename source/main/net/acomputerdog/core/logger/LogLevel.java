@@ -4,19 +4,63 @@ package net.acomputerdog.core.logger;
  * Logging levels such as DEBUG, INFO, ERROR, etc.
  */
 public enum LogLevel {
+    /**
+     * LogLevel for full debug logging
+     */
     DEBUG("DEBUG", 0, true, false),
+    /**
+     * LogLevel for smaller debug logging
+     */
     DETAIL("DETAIL", 1, true, false),
+    /**
+     * LogLevel for normal message logging.
+     */
     INFO("INFO", 2, false, false),
+    /**
+     * LogLevel for logging warnings, such as when an unexpected value is encountered.
+     */
     WARNING("WARNING", 3, false, false),
+    /**
+     * LogLevel for logging errors, such as an exception
+     */
     ERROR("ERROR", 4, false, true),
+    /**
+     * LogLevel for logging application-terminating errors, such as when a required library could not be loaded
+     */
     FATAL("FATAL", 5, false, true),
+    /**
+     * LogLevel for logging stack traces.
+     */
     STACK("STACK", 6, false, true);
 
+    /**
+     * The name of this LogLevel
+     */
     private String levelName;
+
+    /**
+     * The numerical priority of this LogLevel
+     */
     private int priority;
+
+    /**
+     * If this LogLevel is a debug level
+     */
     private boolean isDebug;
+
+    /**
+     * If this LogLevel is an error level
+     */
     private boolean isError;
 
+    /**
+     * Creates a new LogLevel
+     *
+     * @param levelName The name of this Level
+     * @param priority  The priority of this level
+     * @param isDebug   If this Level is a debug level
+     * @param isError   If this level is an error level
+     */
     private LogLevel(String levelName, int priority, boolean isDebug, boolean isError) {
         this.levelName = levelName;
         this.priority = priority;
