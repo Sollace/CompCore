@@ -8,6 +8,9 @@ import java.util.Map;
  * Reflection utilities
  */
 public class Reflect {
+    /**
+     * Map of FieldInstances to Fields
+     */
     private static final Map<FieldID, Field> fieldMap = new HashMap<FieldID, Field>();
 
     /**
@@ -44,7 +47,13 @@ public class Reflect {
      * Class used to hold a class and field name.  Used for caching hashmap.
      */
     private static class FieldID {
+        /**
+         * The class of the field
+         */
         private final Class cls;
+        /**
+         * The name of the field
+         */
         private final String name;
 
         private FieldID(Class cls, String name) {
