@@ -7,31 +7,31 @@ public enum LogLevel {
     /**
      * LogLevel for full debug logging
      */
-    DEBUG("DEBUG", 0, true, false),
+    DEBUG("DEBUG", 0, true, false, false),
     /**
      * LogLevel for smaller debug logging
      */
-    DETAIL("DETAIL", 1, true, false),
+    DETAIL("DETAIL", 1, true, false, false),
     /**
      * LogLevel for normal message logging.
      */
-    INFO("INFO", 2, false, false),
+    INFO("INFO", 2, false, false, false),
     /**
      * LogLevel for logging warnings, such as when an unexpected value is encountered.
      */
-    WARNING("WARNING", 3, false, false),
+    WARNING("WARNING", 3, false, false, false),
     /**
      * LogLevel for logging errors, such as an exception
      */
-    ERROR("ERROR", 4, false, true),
+    ERROR("ERROR", 4, false, true, false),
     /**
      * LogLevel for logging application-terminating errors, such as when a required library could not be loaded
      */
-    FATAL("FATAL", 5, false, true),
+    FATAL("FATAL", 5, false, true, false),
     /**
      * LogLevel for logging stack traces.
      */
-    STACK("STACK", 6, false, true);
+    STACK("STACK", 6, false, true, true);
 
     /**
      * The name of this LogLevel
@@ -54,6 +54,11 @@ public enum LogLevel {
     private boolean isError;
 
     /**
+     * If this LogLevel is allowed to log regardless of LogLevel
+     */
+    private boolean isVoiced;
+
+    /**
      * Creates a new LogLevel
      *
      * @param levelName The name of this Level
@@ -61,11 +66,12 @@ public enum LogLevel {
      * @param isDebug   If this Level is a debug level
      * @param isError   If this level is an error level
      */
-    private LogLevel(String levelName, int priority, boolean isDebug, boolean isError) {
+    private LogLevel(String levelName, int priority, boolean isDebug, boolean isError, boolean isVoiced) {
         this.levelName = levelName;
         this.priority = priority;
         this.isDebug = isDebug;
         this.isError = isError;
+        this.isVoiced = isVoiced;
     }
 
     /**
@@ -105,13 +111,22 @@ public enum LogLevel {
     }
 
     /**
+     * Checks if this LogLevel can output irregardless of minimum log level
+     *
+     * @return Return true if this LogLevel is voiced.
+     */
+    public boolean isVoiced() {
+        return isVoiced;
+    }
+
+    /**
      * Returns true if this ELogLevel is allowed with the specified priority.
      *
      * @param priority The priority to compare to.
      * @return Returns true if this ELogLevel is allowed with the specified priority.
      */
     public boolean isAllowedBy(int priority) {
-        return this.priority >= priority;
+        return this.isVoiced || this.priority >= priority;
     }
 
     /**
@@ -121,7 +136,7 @@ public enum LogLevel {
      * @return Returns true if this ELogLevel is allowed with the specified priority.
      */
     public boolean isAllowedBy(LogLevel priority) {
-        return this.priority >= priority.getPriority();
+        return this.isVoiced || this.priority >= priority.getPriority();
     }
 
     /**
