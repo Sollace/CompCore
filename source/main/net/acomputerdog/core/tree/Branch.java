@@ -119,4 +119,32 @@ public class Branch<T> {
     public Tree<T> getTree() {
         return tree;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Branch)) return false;
+
+        Branch branch = (Branch) o;
+
+        return branches.equals(branch.branches) && leaves.equals(branch.leaves) && parent.equals(branch.parent);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = parent.hashCode();
+        result = 31 * result + branches.hashCode();
+        result = 31 * result + leaves.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "parent=" + parent +
+                ", branches=" + branches +
+                ", leaves=" + leaves +
+                '}';
+    }
 }

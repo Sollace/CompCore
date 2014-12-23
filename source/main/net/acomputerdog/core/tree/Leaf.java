@@ -58,4 +58,30 @@ public class Leaf<T> {
     public Branch<T> getBranch() {
         return branch;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Leaf)) return false;
+
+        Leaf leaf = (Leaf) o;
+
+        return branch.equals(leaf.branch) && !(item != null ? !item.equals(leaf.item) : leaf.item != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = item != null ? item.hashCode() : 0;
+        result = 31 * result + branch.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Leaf{" +
+                "item=" + item +
+                ", branch=" + branch +
+                '}';
+    }
 }

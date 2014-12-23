@@ -26,4 +26,27 @@ public class Tree<T> {
     public Branch<T> getRoot() {
         return root;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tree)) return false;
+
+        Tree tree = (Tree) o;
+
+        return root.equals(tree.root);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return root.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Tree{" +
+                "root=" + root +
+                '}';
+    }
 }
