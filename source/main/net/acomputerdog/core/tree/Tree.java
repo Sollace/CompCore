@@ -21,7 +21,7 @@ public class Tree<T> {
     /**
      * Gets the root branch of this Tree
      *
-     * @return return the root branch of this tree
+     * @return return the root branch
      */
     public Branch<T> getRoot() {
         return root;
