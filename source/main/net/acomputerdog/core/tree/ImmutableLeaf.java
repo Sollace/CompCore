@@ -5,7 +5,7 @@ package net.acomputerdog.core.tree;
  *
  * @param <T> The type of this leaf
  */
-public class ImmutableLeaf<T> extends Leaf<T> {
+public final class ImmutableLeaf<T> extends Leaf<T> {
     /**
      * Creates a new ImmutableLeaf
      * @param branch The branch to attach to
