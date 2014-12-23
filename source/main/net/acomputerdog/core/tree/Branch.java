@@ -1,8 +1,8 @@
 package net.acomputerdog.core.tree;
 
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A branch structure.  Contains no direct items but contains any number of Leafs and Branches
@@ -18,12 +18,12 @@ public class Branch<T> {
     /**
      * The branches held by this Branch
      */
-    private final List<Branch<T>> branches = new LinkedList<Branch<T>>();
+    private final Set<Branch<T>> branches;
 
     /**
      * The leaves held by this Branch
      */
-    private final List<Leaf<T>> leaves = new LinkedList<Leaf<T>>();
+    private final Set<Leaf<T>> leaves;
 
     /**
      * The tree that this branch is a part of
@@ -38,6 +38,8 @@ public class Branch<T> {
     public Branch(Tree<T> tree, Branch<T> parent) {
         this.parent = parent;
         this.tree = tree;
+        branches = new HashSet<Branch<T>>();
+        leaves = new HashSet<Leaf<T>>();
     }
 
     /**
@@ -60,16 +62,16 @@ public class Branch<T> {
      * Gets the branches on this branch
      * @return return the branches attached to this branch
      */
-    public List<Branch<T>> getBranches() {
-        return Collections.unmodifiableList(branches);
+    public Set<Branch<T>> getBranches() {
+        return Collections.unmodifiableSet(branches);
     }
 
     /**
      * Gets the leaves attached to this Branch
      * @return return the leaves attached to this branch
      */
-    public List<Leaf<T>> getLeaves() {
-        return Collections.unmodifiableList(leaves);
+    public Set<Leaf<T>> getLeaves() {
+        return Collections.unmodifiableSet(leaves);
     }
 
     /**
