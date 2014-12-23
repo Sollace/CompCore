@@ -36,27 +36,27 @@ public enum LogLevel {
     /**
      * The name of this LogLevel
      */
-    private String levelName;
+    private final String levelName;
 
     /**
      * The numerical priority of this LogLevel
      */
-    private int priority;
+    private final int priority;
 
     /**
      * If this LogLevel is a debug level
      */
-    private boolean isDebug;
+    private final boolean isDebug;
 
     /**
      * If this LogLevel is an error level
      */
-    private boolean isError;
+    private final boolean isError;
 
     /**
      * If this LogLevel is allowed to log regardless of LogLevel
      */
-    private boolean isVoiced;
+    private final boolean isVoiced;
 
     /**
      * Creates a new LogLevel
