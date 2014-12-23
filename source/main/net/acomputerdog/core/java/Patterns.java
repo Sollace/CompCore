@@ -4,7 +4,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
+/**
+ * Utility class that contains pre-calculated Regexes for common strings
+ */
 public class Patterns {
+    /**
+     * Map from string to quote regex
+     */
     private static final Map<String, String> patternMap = new ConcurrentHashMap<String, String>();
 
     public static final String A = quote("A");
@@ -90,6 +96,12 @@ public class Patterns {
 
     public static final String SECTONSIGN = quote("\u0167");
 
+    /**
+     * Gets the regex that will quote the specified string, creating it if necessary.
+     *
+     * @param str The string to quote
+     * @return Return the regex that will quote the string
+     */
     public static String quote(String str) {
         String regex = patternMap.get(str);
         if (regex == null) {
