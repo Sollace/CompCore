@@ -57,7 +57,10 @@ public class Sleep {
         long endTime = System.currentTimeMillis() + duration; //time at which to wake up
         do {
             try {
-                Thread.sleep(endTime - System.currentTimeMillis()); //sleep any time remaining from sleep duration
+                long timeout = endTime - System.currentTimeMillis();
+                if (timeout > 0) {
+                    Thread.sleep(timeout); //sleep any time remaining from sleep duration
+                }
             } catch (InterruptedException e) {
                 if (!force) { //if force is true, suppress InterruptedException
                     throw e;
