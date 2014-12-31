@@ -15,7 +15,7 @@ public class Tree<T> {
      * Creates a new Tree
      */
     public Tree() {
-        root = new Branch<T>(this, null);
+        root = new Branch<T>(this);
     }
 
     /**

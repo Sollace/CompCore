@@ -42,11 +42,24 @@ public class Branch<T> {
         if (parent == null) {
             throw new IllegalArgumentException("Cannot attach to a null branch!");
         }
-        this.parent = parent;
         this.tree = tree;
+        this.parent = parent;
         branches = new HashSet<Branch<T>>();
         leaves = new HashSet<Leaf<T>>();
     }
+
+    /**
+     * Protected constructor for creating the root branch
+     *
+     * @param tree The tree to attach to
+     */
+    protected Branch(Tree<T> tree) {
+        this.tree = tree;
+        this.parent = null;
+        branches = new HashSet<Branch<T>>();
+        leaves = new HashSet<Leaf<T>>();
+    }
+
 
     /**
      * Check if this branch is a root branch (it has no parent)
@@ -132,15 +145,13 @@ public class Branch<T> {
         if (!(o instanceof Branch)) return false;
 
         Branch branch = (Branch) o;
-
-        return branches.equals(branch.branches) && leaves.equals(branch.leaves) && parent.equals(branch.parent);
+        return branches.equals(branch.branches) && leaves.equals(branch.leaves);
 
     }
 
     @Override
     public int hashCode() {
-        int result = parent.hashCode();
-        result = 31 * result + branches.hashCode();
+        int result = branches.hashCode();
         result = 31 * result + leaves.hashCode();
         return result;
     }
@@ -148,8 +159,7 @@ public class Branch<T> {
     @Override
     public String toString() {
         return "Branch{" +
-                "parent=" + parent +
-                ", branches=" + branches +
+                "branches=" + branches +
                 ", leaves=" + leaves +
                 '}';
     }
