@@ -23,7 +23,7 @@ public class Sleep {
      */
     public static void sync(long methodStartTime, long duration, boolean force) {
         if (duration <= 10) {
-            return;
+            duration = 10;
         }
         long currTime = System.currentTimeMillis(); //only calculate current time once, otherwise math can be thrown off
         long endTime = duration + methodStartTime; //time that the method wants to end after
@@ -51,8 +51,8 @@ public class Sleep {
      * @throws InterruptedException Throws InterruptedException if force is false, and the thread is interrupted.
      */
     public static void sleep(long duration, boolean force) throws InterruptedException {
-        if (duration <= 0) {
-            return;
+        if (duration <= 10) {
+            duration = 10;
         }
         long endTime = System.currentTimeMillis() + duration; //time at which to wake up
         do {
