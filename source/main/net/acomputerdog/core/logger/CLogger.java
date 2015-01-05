@@ -24,6 +24,11 @@ public class CLogger {
     private static final StandardClock loggerClock = new StandardClock();
 
     /**
+     * Default stream for new CLoggers
+     */
+    private static PrintStream defaultOut = System.out;
+
+    /**
      * The PrintWriter used to write Exception output
      */
     private final PrintWriter exceptionLogger;
@@ -84,7 +89,7 @@ public class CLogger {
         this.includeDate = includeDate;
         this.includeTime = includeTime;
         this.minimumLogLevel = minimumLevel;
-        this.loggerOutput = System.out;
+        this.loggerOutput = defaultOut;
         this.exceptionLogger = new PrintWriter(new CLoggerWriter());
     }
 
@@ -314,6 +319,27 @@ public class CLogger {
             throw new IllegalArgumentException("Logger output cannot be null!");
         }
         this.loggerOutput = loggerOutput;
+    }
+
+    /**
+     * Gets the stream that will be used by new loggers
+     *
+     * @return return the default printStream
+     */
+    public static PrintStream getDefaultOut() {
+        return defaultOut;
+    }
+
+    /**
+     * Sets the stream that will be used by new loggers
+     *
+     * @param defaultOut the new stream.  cannot be null.
+     */
+    public static void setDefaultOut(PrintStream defaultOut) {
+        if (defaultOut == null) {
+            throw new IllegalArgumentException("Default stream cannot be null!");
+        }
+        CLogger.defaultOut = defaultOut;
     }
 
     /**
