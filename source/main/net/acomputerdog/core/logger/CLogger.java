@@ -125,9 +125,18 @@ public class CLogger {
      * @param message The message to print.
      */
     private void log(String message) {
-        loggerOutput.println(getFormattedDate() + getFormattedTime() + "[" + name + "]" + message);
+        loggerOutput.println(formatMessage(message));
     }
 
+    /**
+     * Formats a message by adding logger name, date, time, etc.
+     *
+     * @param message The message to log
+     * @return Return the formatted string
+     */
+    protected String formatMessage(String message) {
+        return getFormattedDate() + getFormattedTime() + "[" + name + "]" + message;
+    }
 
     /**
      * Prints out a message in the format [{name}] {message}/n.  This will always log, irregardless of the minium log level.
