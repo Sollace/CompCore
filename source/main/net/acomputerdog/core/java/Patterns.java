@@ -1,82 +1,75 @@
 package net.acomputerdog.core.java;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 /**
  * Utility class that contains pre-calculated Regexes for common strings
  */
 public class Patterns {
-    /**
-     * Map from string to quote regex
-     */
-    private static final Map<String, String> patternMap = new ConcurrentHashMap<String, String>();
+    public static final String A = "A";
+    public static final String B = "B";
+    public static final String C = "C";
+    public static final String D = "D";
+    public static final String E = "E";
+    public static final String F = "F";
+    public static final String G = "G";
+    public static final String H = "H";
+    public static final String I = "I";
+    public static final String J = "J";
+    public static final String K = "K";
+    public static final String L = "L";
+    public static final String M = "M";
+    public static final String N = "N";
+    public static final String O = "O";
+    public static final String P = "P";
+    public static final String Q = "Q";
+    public static final String R = "R";
+    public static final String S = "S";
+    public static final String T = "T";
+    public static final String U = "U";
+    public static final String V = "V";
+    public static final String W = "W";
+    public static final String X = "X";
+    public static final String Y = "Y";
+    public static final String Z = "Z";
 
-    public static final String A = quote("A");
-    public static final String B = quote("B");
-    public static final String C = quote("C");
-    public static final String D = quote("D");
-    public static final String E = quote("E");
-    public static final String F = quote("F");
-    public static final String G = quote("G");
-    public static final String H = quote("H");
-    public static final String I = quote("I");
-    public static final String J = quote("J");
-    public static final String K = quote("K");
-    public static final String L = quote("L");
-    public static final String M = quote("M");
-    public static final String N = quote("N");
-    public static final String O = quote("O");
-    public static final String P = quote("P");
-    public static final String Q = quote("Q");
-    public static final String R = quote("R");
-    public static final String S = quote("S");
-    public static final String T = quote("T");
-    public static final String U = quote("U");
-    public static final String V = quote("V");
-    public static final String W = quote("W");
-    public static final String X = quote("X");
-    public static final String Y = quote("Y");
-    public static final String Z = quote("Z");
+    public static final String a = "a";
+    public static final String b = "b";
+    public static final String c = "c";
+    public static final String d = "d";
+    public static final String e = "e";
+    public static final String f = "f";
+    public static final String g = "g";
+    public static final String h = "h";
+    public static final String i = "i";
+    public static final String j = "j";
+    public static final String k = "k";
+    public static final String l = "l";
+    public static final String m = "m";
+    public static final String n = "n";
+    public static final String o = "o";
+    public static final String p = "p";
+    public static final String q = "q";
+    public static final String r = "r";
+    public static final String s = "s";
+    public static final String t = "t";
+    public static final String u = "u";
+    public static final String v = "v";
+    public static final String w = "w";
+    public static final String x = "x";
+    public static final String y = "y";
+    public static final String z = "z";
 
-    public static final String a = quote("a");
-    public static final String b = quote("b");
-    public static final String c = quote("c");
-    public static final String d = quote("d");
-    public static final String e = quote("e");
-    public static final String f = quote("f");
-    public static final String g = quote("g");
-    public static final String h = quote("h");
-    public static final String i = quote("i");
-    public static final String j = quote("j");
-    public static final String k = quote("k");
-    public static final String l = quote("l");
-    public static final String m = quote("m");
-    public static final String n = quote("n");
-    public static final String o = quote("o");
-    public static final String p = quote("p");
-    public static final String q = quote("q");
-    public static final String r = quote("r");
-    public static final String s = quote("s");
-    public static final String t = quote("t");
-    public static final String u = quote("u");
-    public static final String v = quote("v");
-    public static final String w = quote("w");
-    public static final String x = quote("x");
-    public static final String y = quote("y");
-    public static final String z = quote("z");
-
-    public static final String ZERO = quote("0");
-    public static final String ONE = quote("1");
-    public static final String TWO = quote("2");
-    public static final String THREE = quote("3");
-    public static final String FOUR = quote("4");
-    public static final String FIVE = quote("5");
-    public static final String SIX = quote("6");
-    public static final String SEVEN = quote("7");
-    public static final String EIGHT = quote("8");
-    public static final String NINE = quote("9");
+    public static final String ZERO = "0";
+    public static final String ONE = "1";
+    public static final String TWO = "2";
+    public static final String THREE = "3";
+    public static final String FOUR = "4";
+    public static final String FIVE = "5";
+    public static final String SIX = "6";
+    public static final String SEVEN = "7";
+    public static final String EIGHT = "8";
+    public static final String NINE = "9";
 
     public static final String PERIOD = quote(".");
     public static final String COMMA = quote(",");
@@ -85,6 +78,7 @@ public class Patterns {
     public static final String MINUS = quote("-");
     public static final String PLUS = quote("+");
     public static final String EQUALS = quote("=");
+    public static final String CAP = quote("^");
     public static final String LEFT_PAREN = quote("(");
     public static final String RIGHT_PAREN = quote(")");
     public static final String SEMICOLON = quote(";");
@@ -97,25 +91,42 @@ public class Patterns {
     public static final String LESS_THAN = quote("<");
     public static final String OPEN_CURLY_BRACKETS = quote("{");
     public static final String CLOSE_CURLY_BRACKETS = quote("}");
-    public static final String FORWARD_SLASH = quote("/");
-    public static final String BACK_SLASH = quote("\\");
+    public static final String FORWARD_SLASH = "/";
+    public static final String BACK_SLASH = "\\";
 
-    public static final String SECTONSIGN = quote("\u0167");
-
-    public static final String NEWLINE = quote("\n");
-
+    public static final String SECTONSIGN = "\u0167";
+    
+    public static final String NEWLINE = "\n";
+    public static final String CARRIAG_RETURN = "\r";
+    public static final String TAB = "\t";
+    
+    /**
+     * A pattern that will match any line break, whether it uses 
+     */
+    public static final String LINE_DELIMITER = "\n|\r\n|\r";
+    /**
+     * A pattern that will match url/directory delimiters regardless of direction.
+     */
+    public static final String DIRECTORY_DELIMETER = "/|\\";
+    /**
+     * A patter that will match method parameters from a descriptor.
+     * <p>
+     * Source:
+     * <a href="https://gist.github.com/VijayKrishna/6160036">https://gist.github.com/VijayKrishna/6160036</a>
+     */
+    public static final String DESCRIPTOR_PARAMETER = "\\[*L[^;]+;|\\[[ZBCSIFDJ]|[ZBCSIFDJ]";
+    
     /**
      * Gets the regex that will quote the specified string, creating it if necessary.
      *
      * @param str The string to quote
      * @return Return the regex that will quote the string
      */
+    /*
+     * Quoting is only needed for character that might have another meaning in regex.
+     */
     public static String quote(String str) {
-        String regex = patternMap.get(str);
-        if (regex == null) {
-            regex = Pattern.quote(str);
-            patternMap.put(str, regex);
-        }
-        return regex;
+        return Pattern.quote(str);
+        //return "\\Q" + str + "\\E";
     }
 }
