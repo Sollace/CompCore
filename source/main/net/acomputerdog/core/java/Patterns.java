@@ -92,7 +92,7 @@ public class Patterns {
     public static final String OPEN_CURLY_BRACKETS = quote("{");
     public static final String CLOSE_CURLY_BRACKETS = quote("}");
     public static final String FORWARD_SLASH = "/";
-    public static final String BACK_SLASH = "\\";
+    public static final String BACK_SLASH = quote("\\");
 
     public static final String SECTONSIGN = "\u0167";
     
