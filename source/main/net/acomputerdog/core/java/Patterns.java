@@ -101,7 +101,7 @@ public class Patterns {
     public static final String TAB = "\t";
     
     /**
-     * A pattern that will match any line break, whether it uses 
+     * A pattern that will match any line break, regardless of type.
      */
     public static final String LINE_DELIMITER = "\n|\r\n|\r";
     /**
@@ -123,7 +123,7 @@ public class Patterns {
      * @return Return the regex that will quote the string
      */
     /*
-     * Quoting is only needed for character that might have another meaning in regex.
+     * Quoting is only needed for characters that might have another meaning in regex.
      */
     public static String quote(String str) {
         return Pattern.quote(str);
