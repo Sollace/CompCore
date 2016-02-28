@@ -11,25 +11,42 @@ public class MathUtils {
      * @return Return true if the string is an integer.
      */
     public static boolean isInteger(String str) {
-        if (str == null) {
-            return false;
-        }
-        int length = str.length();
-        if (length == 0) {
-            return false;
-        }
+        if (str == null) return false;
+        final char[] chars = str.toCharArray();
+        if (chars.length == 0) return false;
         int i = 0;
-        if (str.charAt(0) == '-') {
-            if (length == 1) {
-                return false;
-            }
-            i = 1;
+        if (chars[0] == '-' || chars[0] == '+') {
+            if (chars.length == 1) return false;
+            i++;
         }
-        for (; i < length; i++) {
-            char c = str.charAt(i);
-            if (c <= '/' || c >= ':') {
-                return false;
-            }
+        for (; i < chars.length; i++) {
+            if (!Character.isDigit(chars[i])) return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Checks if a string represents a number with support for floating points.
+     *
+     * @param str The string to test.
+     * @return Return true if the string is a number.
+     */
+    public static boolean isFloat(String str) {
+    	if (str == null) return false;
+        final char[] chars = str.toCharArray();
+        if (chars.length == 0) return false;
+        int i = 0;
+        if (chars[0] == '-' || chars[0] == '+') {
+            if (chars.length == 1) return false;
+            i++;
+        }
+        boolean dotted = false;
+        for (; i < chars.length; i++) {
+        	if (chars[i] == '.' || chars[i] == ',') {
+        		if (dotted) return false;
+        		dotted = true;
+        	}
+            if (!Character.isDigit(chars[i])) return false;
         }
         return true;
     }

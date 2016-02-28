@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 /**
  * A standard date and time class utilizing System.currentTimeMillis() and Calendar.
  */
+@Deprecated
 public class StandardClock implements IDate, ITimePrecise {
 
     /**

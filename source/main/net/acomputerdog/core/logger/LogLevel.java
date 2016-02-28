@@ -120,30 +120,30 @@ public enum LogLevel {
     }
 
     /**
-     * Returns true if this ELogLevel is allowed with the specified priority.
+     * Returns true if this LogLevel is allowed with the specified priority.
      *
      * @param priority The priority to compare to.
-     * @return Returns true if this ELogLevel is allowed with the specified priority.
+     * @return Returns true if this LogLevel is allowed with the specified priority.
      */
     public boolean isAllowedBy(int priority) {
         return this.isVoiced || this.priority >= priority;
     }
 
     /**
-     * Returns true if this ELogLevel is allowed with the specified priority.
+     * Returns true if this LogLevel is allowed with the specified priority.
      *
      * @param priority The priority to compare to.
-     * @return Returns true if this ELogLevel is allowed with the specified priority.
+     * @return Returns true if this LogLevel is allowed with the specified priority.
      */
     public boolean isAllowedBy(LogLevel priority) {
         return this.isVoiced || this.priority >= priority.getPriority();
     }
 
     /**
-     * Gets the ELogLevel identified by the given name.
+     * Gets the LogLevel identified by the given name.
      *
-     * @param name The name of the ELogLevel to get.
-     * @return Return the ELogLevel identified by the given name, or null if none exists.
+     * @param name The name of the LogLevel to get.
+     * @return Return the LogLevel identified by the given name, or null if none exists.
      */
     public static LogLevel getByName(String name) {
         if (name == null) {

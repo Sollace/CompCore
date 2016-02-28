@@ -3,6 +3,7 @@ package net.acomputerdog.core.time;
 /**
  * Same as ITime, but includes millisecond precision.
  */
+@Deprecated
 public interface ITimePrecise extends ITime {
 
     /**

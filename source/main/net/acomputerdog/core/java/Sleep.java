@@ -22,9 +22,7 @@ public class Sleep {
      * @param force           If true, InterruptedExceptions will be suppressed
      */
     public static void sync(long methodStartTime, long duration, boolean force) {
-        if (duration <= 10) {
-            duration = 10;
-        }
+        if (duration < 10) duration = 10;
         long currTime = System.currentTimeMillis(); //only calculate current time once, otherwise math can be thrown off
         long endTime = duration + methodStartTime; //time that the method wants to end after
         if (endTime > currTime) { //if the method completed too fast, then sleep.
@@ -51,22 +49,15 @@ public class Sleep {
      * @throws InterruptedException Throws InterruptedException if force is false, and the thread is interrupted.
      */
     public static void sleep(long duration, boolean force) throws InterruptedException {
-        if (duration <= 10) {
-            duration = 10;
-        }
+        if (duration < 10) duration = 10;
         long endTime = System.currentTimeMillis() + duration; //time at which to wake up
+        long sleep = duration;
         do {
             try {
-                long timeout = endTime - System.currentTimeMillis();
-                if (timeout > 0) {
-                    Thread.sleep(timeout); //sleep any time remaining from sleep duration
-                }
+                Thread.sleep(sleep); //sleep any time remaining from sleep duration
             } catch (InterruptedException e) {
-                if (!force) { //if force is true, suppress InterruptedException
-                    throw e;
-                }
+                if (!force) throw e; //if force is true, suppress InterruptedException
             }
-        }
-        while (System.currentTimeMillis() < endTime && force);  // if time is left and force is true, sleep for remaining time.
+        } while (force && (sleep = endTime - System.currentTimeMillis()) > 0);  // if time is left and force is true, sleep for remaining time.
     }
 }
