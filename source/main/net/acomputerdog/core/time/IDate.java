@@ -4,6 +4,7 @@ package net.acomputerdog.core.time;
  * Represents a date with the structure 7 days in a week, 28/29/30/31 days in a month, 12 months in a year.
  * Values are weekday, day, and month values are 0 - indexed.  BC years are negative, AD are positive, 0AD is 0.
  */
+@Deprecated
 public interface IDate {
 
     /**

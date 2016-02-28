@@ -3,6 +3,7 @@ package net.acomputerdog.core.time;
 /**
  * Represents a time with 24 total hours each composed of 60 minutes, each composed of 60 seconds.
  */
+@Deprecated
 public interface ITime {
 
     /**

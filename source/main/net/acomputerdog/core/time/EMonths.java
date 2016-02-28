@@ -3,6 +3,7 @@ package net.acomputerdog.core.time;
 /**
  * Enum for getting the names of months of the year.  Ex: EMonths.values()[0].getName() == "January"
  */
+@Deprecated
 public enum EMonths {
 
     JANUARY("January"),
