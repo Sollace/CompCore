@@ -14,7 +14,7 @@ public class StringGen {
     /**
      * "Alphabet" of characters to use when generating Strings
      */
-    private static final char[] alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ01234567890".toCharArray();
+    private static final char[] alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789".toCharArray();
 
     /**
      * Creates a string of the specified length
@@ -23,14 +23,14 @@ public class StringGen {
      * @return Return the generated string
      */
     public static String nextString(int length) {
-        byte[] bytes = new byte[length];
-        random.nextBytes(bytes);
-        limBytes(bytes, (byte) alphabet.length);
-        char[] chars = new char[bytes.length];
-        for (int index = 0; index < bytes.length; index++) {
-            bytes[index] = (byte) (bytes[index] % chars.length);
-        }
-        return new String(chars);
+		byte[] bytes = new byte[length];
+		char[] buf = new char[length];
+		random.nextBytes(bytes);
+		byte b;
+		while (length-- > 0) {
+			buf[length] = alphabet[((b = bytes[length]) < 0 ? -b : b) % alphabet.length];
+		}
+		return new String(buf);
     }
 
     /**
@@ -39,18 +39,5 @@ public class StringGen {
      */
     public static String nextString() {
         return nextString(8);
-    }
-
-    /**
-     * Limits an array of bytes to a certain max value using modulus
-     * @param bytes The bytes to limit
-     * @param max The value to limit to
-     * @return Return the array of bytes with limited values
-     */
-    private static byte[] limBytes(byte[] bytes, byte max) {
-        for (int index = 0; index < bytes.length; index++) {
-            bytes[index] %= max;
-        }
-        return bytes;
     }
 }
