@@ -27,9 +27,14 @@ public interface IDate {
 	public int getYears();
 	
 	/**
-	 * Gets the current Day.
+	 * Gets the current Day of the month.
 	 */
-	public Day getDay();
+	public int getDay();
+	
+	/**
+	 * Gets the current day.
+	 */
+	public Day getDayOfWeek();
 	
 	/**
 	 * Gets the current Month.

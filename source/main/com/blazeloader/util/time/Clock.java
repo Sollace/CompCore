@@ -13,7 +13,7 @@ public class Clock implements IPreciseTime, IClock {
 	}
 	
 	public String getDate() {
-		return padded(getDays()) + "-" + padded(calendar.get(GregorianCalendar.MONTH)+1) + "-" + padded(calendar.get(GregorianCalendar.YEAR));
+		return padded(getDay()) + "-" + padded(calendar.get(GregorianCalendar.MONTH)+1) + "-" + padded(calendar.get(GregorianCalendar.YEAR));
 	}
 	
 	public String getTime() {
@@ -49,10 +49,15 @@ public class Clock implements IPreciseTime, IClock {
 	}
 
 	@Override
-	public Day getDay() {
+	public int getDay() {
+		return get(GregorianCalendar.DAY_OF_MONTH);
+	}
+	
+	@Override
+	public Day getDayOfWeek() {
 		return Day.values()[(get(GregorianCalendar.DAY_OF_WEEK) + 5) % 7];
 	}
-
+	
 	@Override
 	public Month getMonth() {
 		return Month.values()[getMonths()];
