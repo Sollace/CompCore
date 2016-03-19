@@ -136,7 +136,7 @@ public enum LogLevel {
      * @return Returns true if this LogLevel is allowed with the specified priority.
      */
     public boolean isAllowedBy(LogLevel priority) {
-        return this.isVoiced || this.priority >= priority.getPriority();
+        return isAllowedBy(priority.getPriority());
     }
 
     /**
@@ -148,13 +148,12 @@ public enum LogLevel {
     public static LogLevel getByName(String name) {
         if (name == null) {
             throw new IllegalArgumentException("name cannot be null!");
-        } else {
-            for (LogLevel level : values()) {
-                if (name.equals(level.getLevelName())) {
-                    return level;
-                }
-            }
-            return null;
         }
+        for (LogLevel level : values()) {
+            if (name.equals(level.getLevelName())) {
+                return level;
+            }
+        }
+        return null;
     }
 }
