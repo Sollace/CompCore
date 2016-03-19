@@ -109,7 +109,7 @@ public class Patterns {
      */
     public static final String DIRECTORY_DELIMETER = "/|\\";
     /**
-     * A patter that will match method parameters from a descriptor.
+     * A pattern that will match method parameters from a descriptor.
      * <p>
      * Source:
      * <a href="https://gist.github.com/VijayKrishna/6160036">https://gist.github.com/VijayKrishna/6160036</a>

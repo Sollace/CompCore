@@ -9,7 +9,10 @@ import java.util.Map;
  *
  * @param <K> The key type
  * @param <V> The value type
+ * 
+ * @deprecated As of 1.8 this is implemented through {@code HashMap.getOrDefault}
  */
+@Deprecated
 public class DefaultValueHashMap<K, V> extends HashMap<K, V> {
     /**
      * Constructs an empty <tt>HashMap</tt> with the specified initial
@@ -57,26 +60,16 @@ public class DefaultValueHashMap<K, V> extends HashMap<K, V> {
     }
 
     /**
-     * Returns the value to which the specified key is mapped,
-     * or {@code null} if this map contains no mapping for the key.
-     * <p/>
-     * <p>More formally, if this map contains a mapping from a key
-     * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
-     * key.equals(k))}, then this method returns {@code v}; otherwise
-     * it returns {@code null}.  (There can be at most one such mapping.)
-     * <p/>
-     * <p>A return value of {@code null} does not <i>necessarily</i>
-     * indicate that the map contains no mapping for the key; it's also
-     * possible that the map explicitly maps the key to {@code null}.
-     * The {@link #containsKey containsKey} operation may be used to
-     * distinguish these two cases.
+     * Returns the value to which the specified key is mapped, or
+     * {@code defaultValue} if this map contains no mapping for the key.
      *
-     * @param key The key to get the value for
-     * @param def The default value to return if key is not defined.
-     * @see #put(Object, Object)
+     * @param key the key whose associated value is to be returned
+     * @param def the default mapping of the key
+     * @return the value to which the specified key is mapped, or
+     * {@code def} if this map contains no mapping for the key
      */
     public V get(K key, V def) {
-        if (super.containsKey(key)) {
+        if (containsKey(key)) {
             return super.get(key);
         } else {
             return def;
