@@ -9,23 +9,22 @@ import java.util.*;
  *
  * @param <T> The type of object to store
  */
-public class Registry<T extends Identifiable> {
+public class Registry<T extends Identifiable<K, V>, K, V> {
     /**
      * Map of definitions to identifiables
      */
-
-    private final Map<String, T> defMap;
+    private final Map<V, T> defMap;
     /**
      * Map of ids to identifiables
      */
-    private final Map<String, T> idMap;
+    private final Map<K, T> idMap;
 
     /**
      * Creates a new Identifiable
      */
     public Registry() {
-        defMap = new LinkedHashMap<String, T>();
-        idMap = new LinkedHashMap<String, T>();
+        defMap = new LinkedHashMap<V, T>();
+        idMap = new LinkedHashMap<K, T>();
     }
 
     /**
@@ -39,13 +38,17 @@ public class Registry<T extends Identifiable> {
         idMap.put(item.getId(), item);
         return item;
     }
-
+    
+    public boolean containsId(K def) {
+        return defMap.containsKey(def);
+    }
+    
     /**
      * Check if the definition maps to a known identifiable
      * @param def The definition
      * @return Return true if the definition is defined
      */
-    public boolean isDefined(String def) {
+    public boolean containsDefinition(V def) {
         return defMap.containsKey(def);
     }
 
@@ -54,7 +57,7 @@ public class Registry<T extends Identifiable> {
      * @param item the item
      * @return Return true if the item is defined
      */
-    public boolean isDefined(T item) {
+    public boolean containsValue(T item) {
         return defMap.containsValue(item);
     }
 
@@ -63,7 +66,7 @@ public class Registry<T extends Identifiable> {
      * @param def The definition
      * @return Return the item
      */
-    public T getFromDef(String def) {
+    public T getFromDef(V def) {
         return defMap.get(def);
     }
 
@@ -72,7 +75,7 @@ public class Registry<T extends Identifiable> {
      * @param id The ID
      * @return Return the item
      */
-    public T getFromId(String id) {
+    public T getFromId(K id) {
         return idMap.get(id);
     }
 
@@ -88,7 +91,7 @@ public class Registry<T extends Identifiable> {
      * Get a set of all definitions in this registry
      * @return Return a set of all definitions in this Registry
      */
-    public Set<String> getDefinitions() {
+    public Set<V> getDefinitions() {
         return Collections.unmodifiableSet(defMap.keySet());
     }
 
@@ -96,7 +99,7 @@ public class Registry<T extends Identifiable> {
      * Get a set of all ids in this registry
      * @return Return a set of all ids in this Registry
      */
-    public Set<String> getIds() {
+    public Set<K> getIds() {
         return Collections.unmodifiableSet(idMap.keySet());
     }
 }

@@ -15,7 +15,7 @@ import java.lang.reflect.Array;
  * return result;
  * }
  */
-public class Hash {
+public abstract class Hash {
     /**
      * A prime number to use as a multiplicand for SEED
      */

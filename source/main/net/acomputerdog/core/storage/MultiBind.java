@@ -11,19 +11,14 @@ import java.util.Map;
  * @param <K> The key (2nd) identifier type
  * @param <V> The value type
  */
-public class MultiBind<C, K, V> {
-    /**
-     * The map that holds the actual data for this MultiBind
-     */
-    private final Map<C, Map<K, V>> bindData = new HashMap<C, Map<K, V>>();
-
+public class MultiBind<C, K, V> extends HashMap<C, Map<K, V>> {
     /**
      * Creates a new MultiBind
      */
     public MultiBind() {
         super();
     }
-
+    
     /**
      * Adds a value to this MultiBind
      *
@@ -55,7 +50,7 @@ public class MultiBind<C, K, V> {
      * @return Return all the mappings from the category
      */
     public Map<K, V> getCategory(C category) {
-        return Collections.unmodifiableMap(bindData.get(category));
+        return Collections.unmodifiableMap(get(category));
     }
 
     /**
@@ -64,7 +59,7 @@ public class MultiBind<C, K, V> {
      * @return Return true if the category exists, false otherwise
      */
     public boolean categoryExists(C category) {
-        return bindData.containsKey(category) && bindData.get(category).size() > 0;
+        return containsKey(category) && get(category).size() > 0;
     }
 
     /**
@@ -85,9 +80,7 @@ public class MultiBind<C, K, V> {
      */
     private Map<K, V> getOrCreateCategory(C category) {
         Map<K, V> cat = getCategory(category);
-        if (cat == null) {
-            bindData.put(category, cat = new HashMap<K, V>());
-        }
+        if (cat == null) put(category, cat = new HashMap<K, V>());
         return cat;
     }
 }

@@ -4,11 +4,13 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-@Deprecated //this is left only as legacy code support, and should not be relied upon
 /**
  * Reflection utilities
+ * 
+ * @deprecated This is left only for legacy code support, and should not be relied upon
  */
-public class Reflect {
+@Deprecated
+public final class Reflect {
     /**
      * Map of FieldInstances to Fields
      */
@@ -23,6 +25,7 @@ public class Reflect {
      * @param <T>      The type of the field
      * @return Return a T representing the value of the field
      */
+    @Deprecated
     public static <T> T getFieldValue(Class cls, Object instance, String name) {
         FieldInstance fid = new FieldInstance(cls, name);
         Field field = fieldMap.get(fid);
@@ -47,7 +50,8 @@ public class Reflect {
     /**
      * Class used to hold a class and field name.  Used for caching hashmap.
      */
-    private static class FieldInstance {
+    @Deprecated
+    private static final class FieldInstance {
         /**
          * The class of the field
          */
@@ -69,20 +73,14 @@ public class Reflect {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (!(o instanceof FieldInstance)) return false;
-
             FieldInstance fieldInstance = (FieldInstance) o;
-
-            if (!cls.equals(fieldInstance.cls)) return false;
-
-            return name.equals(fieldInstance.name);
+            return cls.equals(fieldInstance.cls) && name.equals(fieldInstance.name);
 
         }
 
         @Override
         public int hashCode() {
-            int result = cls.hashCode();
-            result = 31 * result + (name.hashCode());
-            return result;
+            return cls.hashCode() ^ name.hashCode();
         }
     }
 }

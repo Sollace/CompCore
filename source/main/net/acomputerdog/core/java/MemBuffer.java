@@ -20,9 +20,10 @@ public class MemBuffer {
      * @param size The size of the buffer
      */
     public void allocate(int size) {
-        if (!isAllocated()) {
-            buffer = new byte[size];
+        if (isAllocated()) {
+        	throw new IllegalStateException("Memory buffer already in use.");
         }
+        buffer = new byte[size];
     }
 
     /**
@@ -95,5 +96,13 @@ public class MemBuffer {
      */
     public int getBufferSize() {
         return buffer == null ? 0 : buffer.length;
+    }
+    
+    /**
+     * Gets a byte value at a position inside this buffer.
+     */
+    public byte getByte(int memPosition) {
+    	if (buffer == null) throw new IllegalStateException("Access to empty memory buffer");
+    	return buffer[memPosition % buffer.length];
     }
 }
