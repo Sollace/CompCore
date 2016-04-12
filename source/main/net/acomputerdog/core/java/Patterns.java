@@ -101,6 +101,11 @@ public class Patterns {
     public static final String TAB = "\t";
     
     /**
+     * Line separator for the current system. Used when writing files.
+     */
+    public static final String LINE_SEPARATOR = System.lineSeparator();
+    
+    /**
      * A pattern that will match any line break, regardless of type.
      */
     public static final String LINE_DELIMITER = "\n|\r\n|\r";
